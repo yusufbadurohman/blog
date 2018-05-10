@@ -135,7 +135,7 @@ connecting to: mongodb://127.0.0.1:27017
 MongoDB server version: 3.6.4
 > use admin
 switched to db admin
-> db.createUser({ user: "root", pwd: "toormongodb", roles: [{role: "root", db: "admin"}] })
+> db.createUser({ user: "root", pwd: "password", roles: [{role: "root", db: "admin"}] })
 Successfully added user: {
         "user" : "root",
         "roles" : [
@@ -146,6 +146,111 @@ Successfully added user: {
         ]
 }
 ```
+Open `/etc/mongod.conf` and set option `authorization` to enabled 
+
+```
+security:
+  authorization: enabled
+```
+Restart MongoDB to take effect.
+
+```
+$ sudo systemctl restart mongod 
+```
+Lets try user with authentication
+
+```
+$ mongo
+MongoDB shell version v3.6.4
+connecting to: mongodb://127.0.0.1:27017
+MongoDB server version: 3.6.4
+> use test
+switched to db test
+> show collections
+2018-05-10T20:08:41.352+0000 E QUERY    [thread1] Error: listCollections failed: {
+        "ok" : 0,
+        "errmsg" : "not authorized on test to execute command { listCollections: 1.0, filter: {}, $db: \"test\" }",
+        "code" : 13,
+        "codeName" : "Unauthorized"
+} :
+_getErrorWithCode@src/mongo/shell/utils.js:25:13
+DB.prototype._getCollectionInfosCommand@src/mongo/shell/db.js:941:1
+DB.prototype.getCollectionInfos@src/mongo/shell/db.js:953:19
+DB.prototype.getCollectionNames@src/mongo/shell/db.js:964:16
+shellHelper.show@src/mongo/shell/utils.js:813:9
+shellHelper@src/mongo/shell/utils.js:710:15
+@(shellhelp2):1:1
+> use admin
+switched to db admin
+> db.auth("root", "password")
+1
+> use test
+switched to db test
+> show collections
+inventory
+> db.inventory.find({}, {item: 1, qty: 1}).limit(5)
+{ "_id" : ObjectId("5ab2f6709b8f98766c1083ce"), "item" : "Accuprint", "qty" : 3306 }
+{ "_id" : ObjectId("5ada4760c9bdb06218ec39b2"), "item" : "33 Record and Vinyl", "qty" : 70 }
+{ "_id" : ObjectId("5ada4760c9bdb06218ec39b3"), "item" : "33Ease", "qty" : 989 }
+{ "_id" : ObjectId("5ada4760c9bdb06218ec39b4"), "item" : "3Deem Yourself", "qty" : 889 }
+{ "_id" : ObjectId("5ada4760c9bdb06218ec39b5"), "item" : "3Demon", "qty" : 2209 }                                
+```
+
+Create additional users as needed
+
+```
+> db.createUser({user: "usertest", "pwd": "passwordtest", roles: [{role: "read", db:"test"}]})
+Successfully added user: {
+        "user" : "usertest",
+        "roles" : [
+                {
+                        "role" : "read",
+                        "db" : "test"
+                }
+        ]
+}
+> use admin
+switched to db admin
+> db.logout()
+{ "ok" : 1 }
+> use test
+switched to db test
+> db.auth("usertest", "passwordtest")
+1
+> show collections
+inventory
+> db.inventory.insert({"item": "Test", "qty": 17})
+WriteResult({
+        "writeError" : {
+                "code" : 13,
+                "errmsg" : "not authorized on test to execute command { insert: \"inventory\", ordered: true, $db: \"test\" }"
+        }
+})
+```
+
+Because user that we add only have `read` role access, the user can't add new data to the collections. To check current user that logged in to mongo shell, we can use command below
+
+```
+> db.runCommand({connectionStatus : 1})
+{
+        "authInfo" : {
+                "authenticatedUsers" : [
+                        {
+                                "user" : "usertest",
+                                "db" : "test"
+                        }
+                ],
+                "authenticatedUserRoles" : [
+                        {
+                                "role" : "read",
+                                "db" : "test"
+                        }
+                ]
+        },
+        "ok" : 1
+}
+```
+
 #### Enabling Remote Access
 
 By default MongoDB bind to local interface only, which means no remote access to the MongoDB server. To allow remote access we need to change `bindIp` value in `/etc/mongod.conf`
