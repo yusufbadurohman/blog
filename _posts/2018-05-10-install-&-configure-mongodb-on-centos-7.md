@@ -3,7 +3,7 @@ layout: post
 title: "How to install & configure MongoDB on Centos 7"
 date: 2018-05-10 11:40:38 +0700
 categories: database
-tags: [database, mongodb, nosql]
+tags: [mongodb, nosql]
 ---
 ### How to install & configure Mongodb on Centos 7
 
