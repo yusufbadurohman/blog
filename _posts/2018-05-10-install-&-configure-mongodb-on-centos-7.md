@@ -3,6 +3,7 @@ layout: post
 title: "How to install & configure MongoDB on Centos 7"
 date: 2018-05-10 11:40:38 +0700
 categories: database
+tags: [database, mongodb, nosql]
 ---
 ### How to install & configure Mongodb on Centos 7
 
@@ -17,11 +18,13 @@ This tutorial will guides you through installing MongoDB Community Edition on a 
 - [Enabling Authentication](#enabling-authentication)
 - [Enabling Remote Access](#enabling-remote-access)
 
-#### Prerequisites
+### Prerequisites
 
 Before following this tutorial, make sure you have a regular, non-root user with `sudo` privileges. You can learn more about how to set up a user with these privileges from [here](https://www.digitalocean.com/community/tutorials/how-to-create-a-sudo-user-on-centos-quickstart). 
 
-#### Adding the MongoDB Repository
+<!--break-->
+
+### Adding the MongoDB Repository
 
 The `mongodb-org` package does not exist within the default repositories for CentOS. However, MongoDB maintains a dedicated repository. Let's add it to our server.
 
@@ -56,7 +59,7 @@ updates/7/x86_64                 CentOS-7 - Updates
 . . .
 ```
 
-#### Installing MongoDB
+### Installing MongoDB
 
 Once you have added MongoDB repository, run the following command to install MongoDB. 
 
@@ -109,7 +112,7 @@ $ sudo systemctl status mongod
    CGroup: /system.slice/mongod.service
            └─19874 /usr/bin/mongod --auth --quiet -f /etc/mongod.conf run
 ```
-#### Importing an Example Dataset
+### Importing an Example Dataset
 
 Unlike other database servers, MongoDB does not come with data in its `test` database. Since we don’t want to experiment with new software using production data, we will download a sample dataset from [Documentation Assets](https://github.com/mongodb/docs-assets/tree/primer-dataset). The JSON document contains a collection of inventories, which we’ll use to practice interacting with MongoDB and avoid causing harm to sensitive data.
 
@@ -124,7 +127,7 @@ $ mongoimport --db test --collection inventory --file /tmp/inventory.json
 2018-05-10T18:53:02.470+0000    imported 3244 documents
 ```
 
-#### Enabling Authentication
+### Enabling Authentication
 
 Enabling access control on a MongoDB deployment enforces authentication, requiring users to identify themselves. When accessing a MongoDB deployment that has access control enabled, users can only perform actions as determined by their roles. Mongodb comes with several [built in roles](https://docs.mongodb.com/manual/reference/built-in-roles/) that provide the different levels of access commonly needed in database system. Below is the steps how to enable authentication on MongoDB.
 
@@ -251,7 +254,7 @@ Because user that we add only have `read` role access, the user can't add new da
 }
 ```
 
-#### Enabling Remote Access
+### Enabling Remote Access
 
 By default MongoDB bind to local interface only, which means no remote access to the MongoDB server. To allow remote access we need to change `bindIp` value in `/etc/mongod.conf`
 
@@ -281,8 +284,8 @@ $ sudo systemctl restart mongod
 
 
 
-#### Reference
+### Reference
 
-1. https://en.wikipedia.org/wiki/MongoDB
-2. https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-centos-7
+1. [https://en.wikipedia.org/wiki/MongoDB](https://en.wikipedia.org/wiki/MongoDB){:target="_blank"}
+2. [https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-centos-7](https://en.wikipedia.org/wiki/MongoDB){:target="_blank"}
 
