@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "How to install & configure MongoDB on Centos 7"
-description: "How to install & configure MongoDB on Centos 7"
+title: "How to install and configure MongoDB on Centos 7"
+description: "How to install and configure MongoDB on Centos 7"
 date: 2018-05-10 11:40:38 +0700
 categories: articles
 tags: [mongodb, nosql]
 comments: true
 ---
-### How to install & configure Mongodb on Centos 7
+### How to install and configure Mongodb on Centos 7
 
 MongoDB is a free and open-source cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with schemas. MongoDB is developed by MongoDB Inc., and is published under a combination of the GNU Affero General Public License and the Apache License
 
