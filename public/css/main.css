@@ -1,0 +1,23 @@
+/*****************************************************************************/
+/*
+/* sidebar
+/*
+/*****************************************************************************/
+
+.sidebar {
+    font-size: 0.8rem;
+  }
+  
+  .sidebar-nav-item {
+    letter-spacing: calc(0.08em);
+    text-transform: uppercase;
+  }
+  
+  .sidebar .social-icons a {
+    color: rgba(255, 255, 255, 0.6);
+    padding-right: 0.5em;
+  }
+  
+  .sidebar .social-icons a:hover {
+    text-decoration: none;
+  }
