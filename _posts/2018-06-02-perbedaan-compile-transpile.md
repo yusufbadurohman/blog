@@ -11,11 +11,11 @@ comments: true
 
 Pada saat awal-awal belajar Typescript biasanya kita pernah mendengar istilah *transpile*. *Transpiling* sendiri pada prinsipnya sama dengan *compiling*, yaitu proses mengubah source code bahasa pemrograman ke dalam bentuk yang lain. Meskipun secara umum sama, tapi ada hal spesifik yang membedakan antara *compiling* dan *transpiling*. 
 
-#### Compiling
+### Compiling
 
 Mengubah source code dari satu bahasa pemrograman ke dalam bentuk lain. Biasanya dari bahasa pemrograman tingkat tinggi ke bahasa pemrograman tingkat rendah yang bertujuan untuk membuat program yang bisa dieksekusi (*executable program*).
 
-#### Transpiling
+### Transpiling
 
 Mengubah source code dari satu bahasa pemrograman ke dalam bahasa pemrograman yang lain yang mempunyai level abstraksi yang sama. Secara spesifik kita bisa juga menyebut ini sebagai *source to source compiling*.
 
