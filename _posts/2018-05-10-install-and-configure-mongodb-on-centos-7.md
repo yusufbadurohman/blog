@@ -13,6 +13,8 @@ MongoDB is a free and open-source cross-platform document-oriented database prog
 
 This tutorial will guides you through installing MongoDB Community Edition on a CentOS 7 server. 
 
+<!--break-->
+
 - [Prerequisites](#prerequisites)
 - [Adding the MongoDB Repository](#adding-the-mongodb-repository)
 - [Installing MongoDB](#installing-mongodb)
@@ -23,8 +25,6 @@ This tutorial will guides you through installing MongoDB Community Edition on a 
 ### Prerequisites
 
 Before following this tutorial, make sure you have a regular, non-root user with `sudo` privileges. You can learn more about how to set up a user with these privileges from [here](https://www.digitalocean.com/community/tutorials/how-to-create-a-sudo-user-on-centos-quickstart). 
-
-<!--break-->
 
 ### Adding the MongoDB Repository
 
