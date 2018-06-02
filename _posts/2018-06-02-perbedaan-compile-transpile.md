@@ -7,8 +7,6 @@ categories: articles
 tags: [programming concepts]
 comments: true
 ---
-### Perbedaan antara compiling dan transpiling
-
 Pada saat awal-awal belajar Typescript biasanya kita pernah mendengar istilah *transpile*. *Transpiling* sendiri pada prinsipnya sama dengan *compiling*, yaitu proses mengubah source code bahasa pemrograman ke dalam bentuk yang lain. Meskipun secara umum sama, tapi ada hal spesifik yang membedakan antara *compiling* dan *transpiling*. 
 
 <!--break-->
