@@ -4,7 +4,7 @@ title: "Berkenalan dengan Angular Framework"
 description: "Berkenalan dengan Angular Framework" 
 date: 2018-05-15 13:58:00
 categories: articles
-tags: [angular, javascript]
+tags: [angular, javascript, typescript]
 comments: true
 ---
 
